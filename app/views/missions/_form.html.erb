@@ -1,0 +1,25 @@
+<% if mission.errors.any? %>
+    <ul>
+      <% mission.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+<%= form_for(mission) do |b| %>
+
+  
+
+  <div class="field">
+  <%= b.label :titls, "名稱" %>
+  <%= b.text_field :title %> <br />
+  </div>
+
+  <div class="field">
+  <%= b.label :description, "描述" %>
+  <%= b.text_field :description %> <br />
+  </div>
+
+
+  <%= b.submit %>
+<% end %>
