@@ -9,6 +9,7 @@ cache:
 services:
   - postgresql
 before_install:
+  - gem install bundler:2.2.17
   - nvm install --lts
 before_script:
   - bundle install --jobs=3 --retry=3
