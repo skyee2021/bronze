@@ -1,7 +1,7 @@
 
 language: ruby
 rvm:
- - 2.7.2
+  - 2.7.2
 cache:
   - bundler
   - yarn
@@ -9,6 +9,7 @@ services:
   - postgresql
 before_install:
   - gem install bundler:2.2.17
+  # - bundle lock --add-platform x86_64-linux
   - nvm install --lts
 before_script:
   - bundle install --jobs=3 --retry=3
