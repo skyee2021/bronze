@@ -1,5 +1,8 @@
 
 language: ruby
+rvm:
+ - 2.7.2
+ - jruby
 cache:
   - bundler
   - yarn
@@ -13,5 +16,5 @@ before_script:
   - bundle exec rake db:create
   - bundle exec rake db:schema:load
 script:
-  # - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rails db:migrate RAILS_ENV=test
   - bundle exec rspec
