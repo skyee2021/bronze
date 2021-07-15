@@ -12,8 +12,11 @@
 
   <body>
     <%= notice %>
-    <%= link_to "中文版", language: "zh-TW" %>
-    <%= link_to "English", language: "en" %>
+    <div id='lag-btn'>
+      <%= link_to "中文版", language: "zh-TW" %>
+      <%= link_to "English", language: "en" %>
+    </div>
+    
     <%= yield %>
   </body>
 </html>

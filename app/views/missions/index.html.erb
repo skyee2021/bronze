@@ -1,13 +1,13 @@
 
 
-<h1 class="">任務列表</h1>
+<h1 class=""><%= t('mission_list') %></h1>
 
-<%= link_to '新增任務', new_mission_path %>
+<%= link_to t('new_mission'), new_mission_path %>
 <table class="table">
   <thead>
     <tr class="bg-warning">
       <td><%= t('title') %></td>
-      <td>任務描述</td>
+      <td><%= t('description') %></td>
     </tr>
   </thead>
   <tbody>
@@ -17,8 +17,8 @@
       <td><%= b.description %></td>
       
       <td>
-        <%= link_to '編輯', edit_mission_path(b) %>
-        <%= link_to '刪除', mission_path(b), method: 'delete', data: { confirm: '確定嗎' } %>
+        <%= link_to t('edit'), edit_mission_path(b) %>
+        <%= link_to t('delete'), mission_path(b), method: 'delete', data: { confirm: t('confirm') } %>
       </td>
     </tr>
     <% end %>

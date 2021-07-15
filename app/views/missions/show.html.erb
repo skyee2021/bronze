@@ -1,6 +1,9 @@
 <h1><%= @mission.title %></h1>
 
 <div>
-  <span>內容描述</span>
+  <div><%= t('description') %></div>
   <%= @mission.description %>
 </div>
+
+<br />
+<%= link_to t('back_mission_list'), missions_path %>

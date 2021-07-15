@@ -12,7 +12,7 @@ class MissionsController < ApplicationController
   def create
     @mission = Mission.new(mission_params)
     if @mission.save
-      redirect_to missions_path, notice: '成功'
+      redirect_to missions_path, notice: t('success')
     else
       render :new
     end
@@ -26,7 +26,7 @@ class MissionsController < ApplicationController
 
   def update
     if @mission.update(mission_params)
-      redirect_to missions_path, notice: '修改成功'
+      redirect_to missions_path, notice: t('success')
     else
       render :new
     end
@@ -34,7 +34,7 @@ class MissionsController < ApplicationController
 
   def destroy
     @mission.destroy
-    redirect_to missions_path, notice: '刪除任務'
+    redirect_to missions_path, notice: t('delete')
   end
 
 
