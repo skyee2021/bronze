@@ -2,7 +2,7 @@ class MissionsController < ApplicationController
   before_action :find_mission, only: [:show, :edit, :update, :destroy]
 
   def index
-    @missions = Mission.all
+    @missions = Mission.order('created_at') 
   end
 
   def new
@@ -12,7 +12,7 @@ class MissionsController < ApplicationController
   def create
     @mission = Mission.new(mission_params)
     if @mission.save
-      redirect_to missions_path, notice: '成功'
+      redirect_to missions_path, notice: t('success')
     else
       render :new
     end
@@ -26,7 +26,7 @@ class MissionsController < ApplicationController
 
   def update
     if @mission.update(mission_params)
-      redirect_to missions_path, notice: '修改成功'
+      redirect_to missions_path, notice: t('success')
     else
       render :new
     end
@@ -34,7 +34,7 @@ class MissionsController < ApplicationController
 
   def destroy
     @mission.destroy
-    redirect_to missions_path, notice: '刪除任務'
+    redirect_to missions_path, notice: t('delete')
   end
 
 
@@ -45,6 +45,6 @@ class MissionsController < ApplicationController
   end
   
   def mission_params
-    params.require(:mission).permit(:title, :description)
+    params.require(:mission).permit(:title, :description, :status)
   end
 end

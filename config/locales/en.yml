@@ -30,4 +30,22 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  hello: "Hello"
+  title: Mission Title
+  description: Mission Description
+  edit: edit
+  delete: delete
+  confirm: confirm?
+  new_mission: New Mission
+  mission_list: Mission List
+  success: success
+  back_mission_list: Back Mission List
+  edit_mission: Mission Edit
+  new_mission: New Mission
+  update: update
+  status: status
+  enums:
+    status:
+      pending: pending
+      progress: progress
+      done: done

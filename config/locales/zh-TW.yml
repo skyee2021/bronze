@@ -1,0 +1,20 @@
+zh-TW:
+  hello: "你好"
+  title: 任務名稱
+  description: 任務描述
+  edit: 編輯
+  delete: 刪除
+  confirm: 確定?
+  new_mission: 新增任務
+  mission_list: 任務列表
+  success: 成功
+  back_mission_list: 返回任務列表
+  edit_mission: 修改任務
+  new_mission: 新增任務
+  update: 更新
+  status: 任務狀態
+  enums:
+    status:
+      pending: 待處理
+      progress: 進行中
+      done: 已完成

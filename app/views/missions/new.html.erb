@@ -1,7 +1,7 @@
-<h1>新增任務</h1>
+<h1><%= t('new_mission')%></h1>
 
 <%= render "form", mission: @mission %>
 
 
 <br />
-<%= link_to '回列表', missions_path %>
+<%= link_to t('back_mission_list'), missions_path %>
