@@ -20,6 +20,16 @@
   <%= b.text_field :description %> <br />
   </div>
 
+  <div class="field">
+  <%= b.label :status, t('status') %>
+  <%= b.select :status, options_for_select([
+    [t("enums.status.pending"), "pending"],
+    [t("enums.status.progress"), "progress"],
+    [t("enums.status.done"), "done"]
+  ]) %>
+  </div>
+  
 
-  <%= b.submit %>
+
+  <%= b.submit t('update')%>
 <% end %>

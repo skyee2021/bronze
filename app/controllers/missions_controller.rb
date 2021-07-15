@@ -2,7 +2,7 @@ class MissionsController < ApplicationController
   before_action :find_mission, only: [:show, :edit, :update, :destroy]
 
   def index
-    @missions = Mission.all
+    @missions = Mission.order('created_at') 
   end
 
   def new
@@ -45,6 +45,6 @@ class MissionsController < ApplicationController
   end
   
   def mission_params
-    params.require(:mission).permit(:title, :description)
+    params.require(:mission).permit(:title, :description, :status)
   end
 end

@@ -42,3 +42,10 @@ en:
   back_mission_list: Back Mission List
   edit_mission: Mission Edit
   new_mission: New Mission
+  update: update
+  status: status
+  enums:
+    status:
+      pending: pending
+      progress: progress
+      done: done

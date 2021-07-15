@@ -8,6 +8,7 @@
     <tr class="bg-warning">
       <td><%= t('title') %></td>
       <td><%= t('description') %></td>
+      <td><%= t('status') %></td>
     </tr>
   </thead>
   <tbody>
@@ -15,6 +16,7 @@
       <% @missions.each do |b| %>
       <td><%= link_to b.title, mission_path(b) %></td>
       <td><%= b.description %></td>
+      <td><%= t("enums.status.#{b.status}") %></td>
       
       <td>
         <%= link_to t('edit'), edit_mission_path(b) %>
@@ -24,4 +26,6 @@
     <% end %>
   </tbody>
 </table>
+
+<%= Time.now %>
 

@@ -11,3 +11,10 @@ zh-TW:
   back_mission_list: 返回任務列表
   edit_mission: 修改任務
   new_mission: 新增任務
+  update: 更新
+  status: 任務狀態
+  enums:
+    status:
+      pending: 待處理
+      progress: 進行中
+      done: 已完成
