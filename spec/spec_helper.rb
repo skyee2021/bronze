@@ -93,4 +93,8 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+require 'selenium/webdriver'
+
+Selenium::WebDriver::Firefox::Binary.path =
+  "/opt/homebrew-cask/Caskroom/Firefox/latest/Firefox.app/Contents/MacOS/firefox"
 end

@@ -1,4 +1,6 @@
 require 'rails_helper'
+require 'selenium/webdriver'
+
 
 feature "mission", :type => :feature do
   
@@ -16,17 +18,13 @@ feature "mission", :type => :feature do
 end
 
 describe "mission list" do
-  let!(:m1) {Mission.create(:mission, title: "m1", description: "xx1")}
-  let!(:m2) {Mission.create(:mission, title: "m2", description: "xx2")}
-  let!(:expect_order) {%w[m1 m2]}
-  before :each do
-    m1
-    m2
-    visit "/"
-  end
-
+  
+  
   scenario "order by created_at", js: true do
-    res = all('tr td .title').map
-    expect(res).to eq(expect_order)
+    m1 = Mission.create!(title: "m1")
+    m2 = Mission.create!(title: "m2")
+    
+    visit "/"
+    expect(page.body).to match(/m1.*m2/m)
   end
 end
