@@ -1,10 +1,12 @@
+
+
 <h1 class="">任務列表</h1>
 
 <%= link_to '新增任務', new_mission_path %>
 <table class="table">
   <thead>
     <tr class="bg-warning">
-      <td>任務名稱</td>
+      <td><%= t('title') %></td>
       <td>任務描述</td>
     </tr>
   </thead>
@@ -22,3 +24,4 @@
     <% end %>
   </tbody>
 </table>
+
