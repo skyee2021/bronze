@@ -44,8 +44,12 @@ en:
   new_mission: New Mission
   update: update
   status: status
+  start_time: start time
+  end_time: end time
   enums:
     status:
       pending: pending
       progress: progress
       done: done
+  # later_now: not choose the time earlier than now
+  later_start: end time has to be later than start

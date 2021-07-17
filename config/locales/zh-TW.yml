@@ -13,8 +13,13 @@ zh-TW:
   new_mission: 新增任務
   update: 更新
   status: 任務狀態
+  start_time: 開始時間
+  end_time: 結束時間
   enums:
     status:
       pending: 待處理
       progress: 進行中
       done: 已完成
+  # later_now: 請大於目前時間
+
+  later_start: 結束時間要大於開始時間

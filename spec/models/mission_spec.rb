@@ -6,6 +6,8 @@ RSpec.describe Mission, type: :model do
     it "mission_status is pending" do
       mission = Mission.new(status:"pending")
       expect(mission.status).to eq "pending"
+      mission2 = Mission.create(title:"m2")
+      expect(mission2).to eq(Mission.last)
     end
   end
   
