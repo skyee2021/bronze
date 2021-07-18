@@ -19,8 +19,8 @@
       <td><%= link_to b.title, mission_path(b) %></td>
       <td><%= b.description %></td>
       <td><%= t("enums.status.#{b.status}") %></td>
-      <td><%= b.start_time.strftime("%Y-%m-%d %H:%M") %></td>
-      <td><%= b.end_time.strftime("%Y-%m-%d %H:%M") %></td>
+      <td><%= b.start_time %></td>
+      <td><%= b.end_time %></td>
       
       <td>
         <%= link_to t('edit'), edit_mission_path(b) %>
