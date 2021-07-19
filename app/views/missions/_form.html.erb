@@ -6,7 +6,7 @@
     </ul>
   <% end %>
 
-<%= form_for(mission) do |b| %>
+<%= simple_form_for(mission) do |b| %>
 
   
 
@@ -28,6 +28,8 @@
     [t("enums.status.done"), "done"]
   ]) %>
   </div>
+  <%= b.input :start_time, label: t("start_time") %>
+  <%= b.input :end_time, label: t("end_time") %>
   
 
 
