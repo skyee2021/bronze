@@ -2,6 +2,24 @@
 
 <h1 class=""><%= t('mission_list') %></h1>
 
+<%= search_form_for @q do |f| %>
+  <%= f.label t("title") %>
+  <%= f.search_field :title_cont %>
+
+  <%= f.label t("description") %>
+  <%= f.search_field :description_cont %>
+
+  <%= f.label t("status") %>
+  <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
+                                               [t("enums.status.progress"), "1"],
+                                               [t("enums.status.done"), "2"]]), 
+                                               include_blank: t("status_search") %>
+
+
+
+  <%= f.submit %>
+<% end %>
+
 <%= link_to t('new_mission'), new_mission_path %>
 <table class="table">
   <thead>
@@ -32,5 +50,5 @@
   </tbody>
 </table>
 
-<%= Time.now %>
+
 

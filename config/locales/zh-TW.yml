@@ -23,3 +23,4 @@ zh-TW:
   # later_now: 請大於目前時間
 
   later_start: 結束時間要大於開始時間
+  status_search: 狀態查詢
