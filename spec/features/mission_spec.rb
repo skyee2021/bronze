@@ -6,12 +6,14 @@ feature "mission", :type => :feature do
 
 
   scenario "ordered by created_at" do
-    m1 = Mission.create!(title: "m1", start_time: Time.now, end_time: Time.now)
-    m2 = Mission.create!(title: "m2", start_time: Time.now, end_time: Time.now)
+    m1 = Mission.create!(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes)
+    m2 = Mission.create!(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes)
 
     visit "/" #首頁
     expect(page).to have_content("新增任務")
     expect(page.body).to match(/m1.*m2/m)
+    click_link "sort_by_end"
+    expect(page.body).to match(/m2.*m1/m)
     
     visit "/missions/new"
     expect(page).to have_content("任務名稱")
