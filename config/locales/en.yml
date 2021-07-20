@@ -51,6 +51,11 @@ en:
       pending: pending
       progress: progress
       done: done
+    priority: 
+      low: low
+      middle: middle
+      high: high
   # later_now: not choose the time earlier than now
   later_start: end time has to be later than start
   status_search: status enquiry
+  priority: priority

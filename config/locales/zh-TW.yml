@@ -20,7 +20,12 @@ zh-TW:
       pending: 待處理
       progress: 進行中
       done: 已完成
+    priority: 
+      low: 低
+      middle: 中
+      high: 高
   # later_now: 請大於目前時間
 
   later_start: 結束時間要大於開始時間
   status_search: 狀態查詢
+  priority: 優先級

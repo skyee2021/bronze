@@ -28,6 +28,14 @@
     [t("enums.status.done"), "done"]
   ]) %>
   </div>
+  <div class="field">
+  <%= b.label :priority, t('priority') %>
+  <%= b.select :priority, options_for_select([
+    [t("enums.priority.low"), "low"],
+    [t("enums.priority.middle"), "middle"],
+    [t("enums.priority.high"), "high"]
+  ]) %>
+  </div>
   <%= b.input :start_time, label: t("start_time") %>
   <%= b.input :end_time, label: t("end_time") %>
   

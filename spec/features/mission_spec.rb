@@ -4,8 +4,9 @@ require 'rails_helper'
 
 feature "mission", :type => :feature do
   before do
-    m1 = Mission.create!(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending")
-    m2 = Mission.create!(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done")
+    m1 = Mission.create!(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
+    m2 = Mission.create!(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
+    m3 = Mission.create!(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
   end
 
 
@@ -13,9 +14,11 @@ feature "mission", :type => :feature do
 
     visit "/" #首頁
     expect(page).to have_content("新增任務")
-    expect(page.body).to match(/m1.*m2/m)
+    expect(page.body).to match(/m1.*m2.*m3/m)
     click_link "sort_by_end"
-    expect(page.body).to match(/m2.*m1/m)
+    expect(page.body).to match(/m2.*m3.*m1/m)
+    click_link "sort_by_priority"
+    expect(page.body).to match(/m2.*m3.*m1/m)
 
     #title search
     within(".mission_search") do 
