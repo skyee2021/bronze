@@ -1,5 +1,6 @@
 class Mission < ApplicationRecord
   enum status: {pending: 0, progress: 1, done: 2}
+  enum priority: {low: 0, middle: 1, high: 2}
   validates :title, presence: true
   validates :status, presence: true
   validates :start_time, presence: true
