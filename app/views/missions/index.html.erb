@@ -10,7 +10,8 @@
       <td><%= t('description') %></td>
       <td><%= t('status') %></td>
       <td><%= t('start_time') %></td>
-      <td><%= t('end_time') %></td>
+      <td><%= sort_link(@q, :end_time, t('end_time'), {}, id: "sort_by_end") %></td>
+      
     </tr>
   </thead>
   <tbody>
