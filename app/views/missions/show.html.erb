@@ -1,9 +1,9 @@
-<h1><%= @mission.title %></h1>
+<h1 class="fw-bold mb-3"><%= @mission.title %></h1>
 
 <div>
-  <div><%= t('description') %></div>
-  <%= @mission.description %>
+  <div class="fw-bold"><%= t('description') %></div>
+  <div class="border border-2 my-3 p-3 w-50" ><%= @mission.description %></div>
 </div>
 
 <br />
-<%= link_to t('back_mission_list'), missions_path %>
+<%= link_to t('back_mission_list'), missions_path, class: "btn btn-outline-primary" %>

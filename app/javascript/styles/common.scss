@@ -1,0 +1,30 @@
+#paginate > span {
+  display: flex;
+  justify-content: center;
+  
+}
+
+#sort_by_status {
+ text-decoration: none;
+ color: black;
+}
+
+#sort_by_priority {
+  text-decoration: none;
+  color: black;
+ }
+
+ #sort_by_start {
+  text-decoration: none;
+  color: black;
+ }
+
+ #sort_by_end {
+  text-decoration: none;
+  color: black;
+ }
+
+.search_field {
+  // background-color: rgb(248, 250, 219);
+  color: rgb(211, 1, 1);
+}

@@ -3,7 +3,7 @@ class MissionsController < ApplicationController
 
   def index
     @q = Mission.order('created_at').ransack(params[:q])
-    @missions = @q.result
+    @missions = @q.result.page(params[:page]).per(10)
   end
 
   def new
