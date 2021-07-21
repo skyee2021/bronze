@@ -13,6 +13,6 @@ Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
 
-require ('style')
+
 require ('../styles')
 require ('../styles/common.scss')

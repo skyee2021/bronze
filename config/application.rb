@@ -13,6 +13,7 @@ module Bronze
     config.i18n.default_locale = "zh-TW"
     config.time_zone = "Taipei"
     I18n.available_locales = ["en", "zh-TW"]
+    
 
     # Configuration for the application, engines, and railties goes here.
     #

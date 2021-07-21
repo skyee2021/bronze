@@ -16,8 +16,8 @@
   <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
                                                [t("enums.status.progress"), "1"],
                                                [t("enums.status.done"), "2"]]), 
-                                               include_blank: t("status_search"), 
-                                               class: "form-select" %>
+                                               {include_blank: t("status_search")},
+                                               {class: "select"} %>
 
   <%= f.button :submit, class: "btn btn-danger ms-4" %>
   </div>
@@ -39,7 +39,7 @@
   <tbody>
     <tr>
       <% @missions.each do |b| %>
-      <td><%= link_to b.title, mission_path(b), class: "text-decoration-none text-success fw-bold" %></td>
+      <td><%= link_to b.title, mission_path(b), class: "mission_title text-decoration-none text-success fw-bold" %></td>
       <td><%= b.description %></td>
       <td><%= t("enums.status.#{b.status}") %></td>
       <td><%= t("enums.priority.#{b.priority}") %></td>
