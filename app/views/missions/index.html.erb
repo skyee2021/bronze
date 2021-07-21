@@ -1,28 +1,30 @@
 
 
-<h1 class=""><%= t('mission_list') %></h1>
-<%= link_to t('new_mission'), new_mission_path %>
+<h1 class="mb-3 text-center fw-bold"><%= t('mission_list') %></h1>
+<%= link_to t('new_mission'), new_mission_path, class: "btn btn-primary my-3" %>
 
-
+<div class="">
 <%= search_form_for @q do |f| %>
-  <%= f.label t("title") %>
-  <%= f.search_field :title_cont %>
+  <div class="search_field input-group mb-3">
+  <%= f.label t("title"), class: "input-group-text" %>
+  <%= f.search_field :title_cont, class: "form-control" %>
 
-  <%= f.label t("description") %>
-  <%= f.search_field :description_cont %>
+  <%= f.label t("description"), class: "input-group-text" %>
+  <%= f.search_field :description_cont, class: "form-control" %>
 
-  <%= f.label t("status") %>
+  <%= f.label t("status"), class: "input-group-text" %>
   <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
                                                [t("enums.status.progress"), "1"],
                                                [t("enums.status.done"), "2"]]), 
-                                               include_blank: t("status_search") %>
+                                               include_blank: t("status_search"), 
+                                               class: "form-select" %>
 
-
-
-  <%= f.submit %>
+  <%= f.button :submit, class: "btn btn-danger ms-4" %>
+  </div>
 <% end %>
+</div>
 
-<table class="table">
+<table class="table table-hover text-center">
   <thead>
     <tr class="bg-warning">
       <td><%= t('title') %></td>
@@ -31,13 +33,13 @@
       <td><%= sort_link(@q, :priority, t('priority'), {}, id: "sort_by_priority") %></td>
       <td><%= sort_link(@q, :start_time, t('start_time'), {}, id: "sort_by_start") %></td>
       <td><%= sort_link(@q, :end_time, t('end_time'), {}, id: "sort_by_end") %></td>
-      
+      <td></td>
     </tr>
   </thead>
   <tbody>
     <tr>
       <% @missions.each do |b| %>
-      <td><%= link_to b.title, mission_path(b) %></td>
+      <td><%= link_to b.title, mission_path(b), class: "text-decoration-none text-success fw-bold" %></td>
       <td><%= b.description %></td>
       <td><%= t("enums.status.#{b.status}") %></td>
       <td><%= t("enums.priority.#{b.priority}") %></td>
@@ -45,16 +47,16 @@
       <td><%= b.end_time %></td>
       
       <td>
-        <%= link_to t('edit'), edit_mission_path(b) %>
-        <%= link_to t('delete'), mission_path(b), method: 'delete', data: { confirm: t('confirm') } %>
+        <%= link_to t('edit'), edit_mission_path(b), class: "btn btn-outline-info" %>
+        <%= link_to t('delete'), mission_path(b), method: 'delete', data: { confirm: t('confirm') } , class: "btn btn-outline-light"%>
       </td>
     </tr>
     <% end %>
   </tbody>
 </table>
 
-<div>
-  <%= paginate @missions %>
+<div class="m-auto d-flex justify-content-center" id="paginate">
+  <%= paginate @missions  %>
 </div>
 
 

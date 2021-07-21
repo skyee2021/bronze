@@ -6,40 +6,44 @@
     </ul>
   <% end %>
 
+<div class="">
 <%= simple_form_for(mission) do |b| %>
 
   
 
   <div class="field">
-  <%= b.label :titls, t('title') %>
-  <%= b.text_field :title %> <br />
+  <%= b.input :title, label: t("title"), input_html: {class: "form-control w-25"} %>
   </div>
 
   <div class="field">
-  <%= b.label :description, t('description') %>
-  <%= b.text_field :description %> <br />
+  <%= b.input :description, label: t("description"), input_html: {class: "form-control w-25"} %>
   </div>
 
-  <div class="field">
-  <%= b.label :status, t('status') %>
+  <div class="d-flex align-items-center mb-3 my-2">
+  <%= b.label :status, t('status'), class: "mrx-3" %>
   <%= b.select :status, options_for_select([
     [t("enums.status.pending"), "pending"],
     [t("enums.status.progress"), "progress"],
     [t("enums.status.done"), "done"]
   ]) %>
+  
   </div>
-  <div class="field">
-  <%= b.label :priority, t('priority') %>
+  <div class="d-flex align-items-center mb-3 my-2">
+  <%= b.label :priority, t('priority'), class: "mrx-3" %>
   <%= b.select :priority, options_for_select([
     [t("enums.priority.low"), "low"],
     [t("enums.priority.middle"), "middle"],
     [t("enums.priority.high"), "high"]
   ]) %>
   </div>
-  <%= b.input :start_time, label: t("start_time") %>
-  <%= b.input :end_time, label: t("end_time") %>
+  <div class="d-flex align-items-center mb-3 my-2">
+   <%= b.input :start_time, label: t("start_time") %>
+  </div>
+  <div class="d-flex align-items-center mb-3 my-2">
+    <%= b.input :end_time, label: t("end_time") %>
+  </div>
   
 
-
-  <%= b.submit t('update')%>
+</div>
+  <%= b.button :submit, class: "btn btn-danger my-3"%>
 <% end %>
