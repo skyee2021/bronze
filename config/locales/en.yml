@@ -59,6 +59,7 @@ en:
   later_start: end time has to be later than start
   status_search: status enquiry
   priority: priority
+  submit: search
   views:
     pagination:
       first: "&laquo; First"
