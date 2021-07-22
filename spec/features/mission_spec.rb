@@ -14,11 +14,10 @@ feature "mission", :type => :feature do
 
     visit "/" #首頁
     expect(page).to have_content("新增任務")
-    # expect(page).to include("m1")
-    # expect(body.index(@m1.title)).to be body.index(@m2.title)
     mission_order = page.all('.mission_title').map(&:text)
-    expect(mission_order).to eq(["m1", "m2", "m3"])
     # byebug
+    expect(mission_order).to eq(["m1", "m2", "m3"])
+    
 
     # expect(all.).to match(/m3/m)
     # missions = Mission.ransack({s: "created_at"}).result
@@ -40,7 +39,7 @@ feature "mission", :type => :feature do
     within(".mission_search") do 
       fill_in "q_title_cont", with: "m1"
     end
-    click_button "submit"
+    click_button I18n.t("submit")
     expect(page.body).to have_content("m1")
     expect(page.body).not_to have_content("m2")
 
@@ -61,7 +60,7 @@ feature "mission", :type => :feature do
     within("#mission_search") do
       select I18n.t("enums.status.done"), from: 'q_status_eq'
     end
-    click_button "submit"
+    click_button I18n.t("submit")
     expect(page.body).to have_content("m2")
     expect(page.body).not_to have_content("m1")
   end

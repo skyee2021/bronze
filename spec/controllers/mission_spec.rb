@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe MissionsController, type: :controller do
-  before(:all) do
+  before do
     @m3 = Mission.create(title: "m3", start_time: Time.now, end_time: Time.now)
    
   end
