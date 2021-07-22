@@ -64,4 +64,4 @@ gem 'rails-i18n'
 gem 'simple_form', '~> 5.1'
 gem 'ransack'
 gem 'kaminari'
-
+# gem 'bootstrap_helper'
