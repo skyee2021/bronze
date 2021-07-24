@@ -14,8 +14,9 @@ Turbolinks.start()
 ActiveStorage.start()
 
 
-require ('../styles')
-require ('../styles/common.scss')
+// require ('../styles')
+// require ('../styles/common.scss')
+import "styles"
 
 import "bootstrap"
 const bootstrap = require('bootstrap')

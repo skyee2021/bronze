@@ -67,3 +67,11 @@ en:
       previous: "&lsaquo; Prev"
       next: "Next &rsaquo;"
       truncate: "&hellip;"
+  user_sign: Sign in
+  email: email address
+  password: password
+  password_confirmation: confirm password
+  mission_setter: mission setter
+  log_in: Log in
+  log_out: Log out
+  sign_in: Sign in
