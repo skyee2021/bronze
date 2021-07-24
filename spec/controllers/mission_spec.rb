@@ -2,7 +2,8 @@ require 'rails_helper'
 
 RSpec.describe MissionsController, type: :controller do
   before do
-    @m3 = Mission.create(title: "m3", start_time: Time.now, end_time: Time.now)
+    u1 = User.create(email: "aaaa@aa.aa", password: "123456")
+    @m3 = u1.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
    
   end
   it "#index" do

@@ -4,10 +4,14 @@ require 'rails_helper'
 
 feature "mission", :type => :feature do
   before do
-    m1 = Mission.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
-    m2 = Mission.create(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
-    m3 = Mission.create(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
+    u1 = User.create(email: "aaaa@aa.aa", password: "123456")
+    m1 = u1.missions.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
+    m2 = u1.missions.create(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
+    m3 = u1.missions.create(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
   end
+
+  let(:user){ create(:user, role: 0) }
+  let(:mission){ create(:mission, user_id: user.id) }
 
 
   scenario "ordered by created_at" do
