@@ -2,6 +2,10 @@ require 'rails_helper'
 
 RSpec.describe Mission, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    user = User.create(id: 3, email: "aaa@aa.aa", password: "123123")
+  end
+
   context "任務" do
     it "mission_status is pending" do
       mission = Mission.new(title: "m1", start_time: Time.now, end_time: Time.now, status:"pending")
@@ -22,7 +26,7 @@ RSpec.describe Mission, type: :model do
     end
 
     it "end-time" do
-      mission = Mission.new(title: "a", start_time: Time.now, end_time: Time.now - 2.minutes)
+      mission = Mission.new(title: "m4", start_time: Time.now, end_time: Time.now - 2.minutes)
       mission.save
 
       expect(mission.errors.full_messages.include?("End at #{I18n.t("later_than_start_at")}")).to be false
