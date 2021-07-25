@@ -10,7 +10,7 @@ import "channels"
 
 
 Rails.start()
-Turbolinks.start()
+// Turbolinks.start()
 ActiveStorage.start()
 
 

@@ -11,7 +11,7 @@ class MissionsController < ApplicationController
   end
 
   def create
-    @mission = Mission.new(mission_params)
+    @mission = current_user.missions.new(mission_params)
     if @mission.save
       redirect_to missions_path, notice: t('success')
     else
@@ -42,7 +42,7 @@ class MissionsController < ApplicationController
 
   private
   def find_mission
-    @mission = Mission.find(params[:id])
+    @mission = current_user.missions.find(params[:id])
   end
   
   def mission_params
