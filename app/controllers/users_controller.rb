@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update(user_params_edit)
-      redirect_to root_path, notice: t("successfully_update_user")
+      redirect_to root_path, notice: t("successfully_update")
     else
       render :edit
     end

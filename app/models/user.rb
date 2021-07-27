@@ -13,6 +13,9 @@ class User < ApplicationRecord
 
   enum role: { member: 0, admin: 1, locked: 2 }
 
+  before_destroy :check_admin_numbers, prepend: true
+  
+
   def self.login(params)
     email = params[:email]
     password = params[:password]
@@ -40,6 +43,12 @@ class User < ApplicationRecord
 
   def unlocked
     self.role = "member"
+  end
+
+  def check_admin_numbers
+    if self.role == "admin"
+      throw :abort if User.where(role: "admin").count <= 1
+    end
   end
 
 end

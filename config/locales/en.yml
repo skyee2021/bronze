@@ -55,6 +55,10 @@ en:
       low: low
       middle: middle
       high: high
+    role:
+      member: member
+      admin: admin
+      locked: locked
   # later_now: not choose the time earlier than now
   later_start: end time has to be later than start
   status_search: status enquiry
@@ -88,3 +92,8 @@ en:
   back_userlist: Back User List
   new_user: New User
   edit_user: Edit User
+  admin_platform: Admin Platform
+  not_admin: You're not Admin 
+  successfully_update: update success
+  not_less_one: not less one admin
+  fail_update: update fail

@@ -20,9 +20,13 @@ class ApplicationController < ActionController::Base
   end
   
   def authenticate_admin_or_org
-    unless current_user.admin!
-      flash[:alert] = '你沒有權限進入！'
-      redirect_to root_path
+    unless current_user.role == "admin"
+      # flash[:alert] = '你沒有權限進入！'
+      redirect_to root_path, notice: t('not_admin')
     end
+  end
+
+  def admin?
+    session[ENV["user_role"]] == "admin"
   end
 end

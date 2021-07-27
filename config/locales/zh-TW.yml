@@ -24,6 +24,11 @@ zh-TW:
       low: 低
       middle: 中
       high: 高
+    role:
+      role:
+      member: 一般會員
+      admin: 管理者
+      locked: 帳號已鎖
   # later_now: 請大於目前時間
 
   later_start: 結束時間要大於開始時間
@@ -58,3 +63,8 @@ zh-TW:
   back_userlist: 回到使用者列表
   new_user: 新增使用者
   edit_user: 修改使用者資訊
+  admin_platform: 管理者後台
+  not_admin: 你不是管理者
+  successfully_update: 更新成功
+  not_less_one: 管理者不能少於一名
+  fail_update: 更新失敗

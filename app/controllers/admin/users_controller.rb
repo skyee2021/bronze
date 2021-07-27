@@ -45,11 +45,24 @@ class Admin::UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params)
-      redirect_to qqaazzxxssww_users_path, notice: t("successfully_update_user")
-    else
-      render :edit
-    end
+    # if User.where(role: "admin").count <= 1 
+    #   if @user.update(edit_user_params)
+    #     redirect_to qqaazzxxssww_users_path, notice: t("successfully_update_user")
+    #   else
+    #     render :edit, notice: t("fail_update")
+    #   end
+    # else
+      if @user.update(user_params)
+        if User.where(role: "admin").count < 1
+          @user.update(role: "admin")
+          redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
+        else
+          redirect_to qqaazzxxssww_users_path, notice: t("successfully_update")
+        end
+      else
+        render :edit, notice: t("fail_update")
+      end
+    # end
   end
 
   def destroy
@@ -60,12 +73,6 @@ class Admin::UsersController < ApplicationController
     end
   end
 
-  # def authenticate_admin_or_org
-  #   unless current_user.admin!
-  #     flash[:alert] = '你沒有權限進入！'
-  #     redirect_to root_path
-  #   end
-  # end
 
   private
     def user_params
@@ -75,6 +82,7 @@ class Admin::UsersController < ApplicationController
     def find_user
       @user = User.find(params[:id])
     end
+
 
 end
 

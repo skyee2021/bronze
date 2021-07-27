@@ -3,29 +3,48 @@ require 'rails_helper'
 
 
 feature "mission", :type => :feature do
-  let(:user) { User.create(email: 'aaa@aa.aa', password: '123456') }
+  let(:user) { User.create(email: 'aaa@aa.aa', password: '123456', role: 'member') }
   
   before do
     # session[ENV['session_name']] = user.id
     # session[ENV["user_role"]] = user.role
     # session[ENV["user_email"]] = user.email
+    # user
+    # login
+    # byebug
   
-    m1 = user.missions.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
-    m2 = user.missions.create(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
-    m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
+    @m1 = user.missions.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
+    @m2 = user.missions.create(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
+    @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
+
+    
+  end
+
+  def login
+    # byebug
+    visit log_in_sessions_path
+    
+    # within('#user_email') do
+      fill_in '#user_email', with: 'aaa@aa.aa'
+    # end
+    # within('#user_password') do
+      fill_in '#user_password', with: '123456'
+    # end
+    click_on I18n.t('submit')
   end
 
 
   scenario "ordered by created_at" do
+    
 
     visit "/" #首頁
     expect(page).to have_content("新增任務")
     mission_order = page.all('.mission_title').map(&:text)
-    # byebug
+    byebug
     expect(mission_order).to eq(["m1", "m2", "m3"])
     
 
-    # expect(all.).to match(/m3/m)
+    # expect(all).to match(/m3/m)
     # missions = Mission.ransack({s: "created_at"}).result
     # expect(missions).to eq([@m1, @m2, @m3])
     
