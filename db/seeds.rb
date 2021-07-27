@@ -5,10 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(email: "user@mail.com", password: "123456")
+User.create(email: "user@mail.com", password: "123456", role: 'admin')
 User.create(email: "aaa@aa.aa", password: "123456")
 User.create(email: "bbb@mail.com", password: "123456")
 
-10.times{
-  Mission.create(title: 'test', status: 'done', start_time: Time.now, end_time: Time.now + 20.hours, user_id: 4)
+5.times{
+  User.first.missions.create(title: 'test', status: 'done', start_time: Time.now, end_time: Time.now + 20.hours, user_id: 4)
+  User.last.missions.create(title: 'test', status: 'pending', start_time: Time.now, end_time: Time.now + 20.hours, user_id: 4)
 }
