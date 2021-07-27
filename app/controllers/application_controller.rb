@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
     I18n.with_locale(session[:language] || I18n.default_locale, &action)
   end
 
+  helper_method :current_user, :user_loged_in?
+
   def current_user
     User.find_by(id: session[ENV["session_name"]])
   end
@@ -17,4 +19,14 @@ class ApplicationController < ActionController::Base
     session[ENV["session_name"]]
   end
   
+  def authenticate_admin_or_org
+    unless current_user.role == "admin"
+      # flash[:alert] = '你沒有權限進入！'
+      redirect_to root_path, notice: t('not_admin')
+    end
+  end
+
+  def admin?
+    session[ENV["user_role"]] == "admin"
+  end
 end

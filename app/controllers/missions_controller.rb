@@ -1,10 +1,15 @@
 class MissionsController < ApplicationController
   before_action :find_mission, only: [:show, :edit, :update, :destroy]
+  before_action :no_user_loged
 
   def index
-    @q = Mission.order('created_at').ransack(params[:q])
-    @missions = @q.result.includes(:user).page(params[:page]).per(10)
-  end
+    if current_user.role == "locked"
+      redirect_to log_in_sessions_path, notice: t("your account is locked")
+    else
+      @q = current_user.missions.order('created_at').ransack(params[:q])
+      @missions = @q.result.includes(:user).page(params[:page]).per(10)
+    end
+    end
 
   def new
     @mission = Mission.new
@@ -47,5 +52,11 @@ class MissionsController < ApplicationController
   
   def mission_params
     params.require(:mission).permit(:title, :description, :status, :start_time, :end_time, :priority)
+  end
+
+  def no_user_loged
+    if session[ENV['session_name']] == nil
+      redirect_to log_in_sessions_path, notice: t("log_before_start")
+    end
   end
 end

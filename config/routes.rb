@@ -5,6 +5,16 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :update, :edit] do
     collection do
       get :sign_up, action: 'new'
+      
+    end
+  end
+
+  namespace :admin, as: "qqaazzxxssww" do
+    resources :users do
+      member do
+        get :locked
+        get :unlocked
+      end
     end
   end
 

@@ -1,12 +1,5 @@
-<%# if session[ENV['session_name']] %>
-<% if user_loged_in? %>
-  <%= link_to current_user.email, edit_user_path(current_user) %>
-   |
-  <%= link_to t('log_out'), log_out_sessions_path, method: 'delete' %>
-<% else %>
-  <%= link_to t('sign_in'), sign_up_users_path %> |
-  <%= link_to t('log_in'), log_in_sessions_path %>
-<% end %>
+
+<%#= render 'missions/header' %>
 
 <h1 class="mb-3 text-center fw-bold"><%= t('mission_list') %></h1>
 <%= link_to t('new_mission'), new_mission_path, class: "btn btn-primary my-3" %>

@@ -1,0 +1,58 @@
+<div class="container">
+  
+
+  <h1 class="mb-3 text-center fw-bold"><%= "#{@user.email[/^\w+/]} #{t("mission_list")}" %></h1>
+
+  <div>
+    <%= link_to t("back_userlist"), qqaazzxxssww_users_path, class: "btn btn-outline-secondary" %>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <%= search_form_for @q, url: qqaazzxxssww_user_path, class: "flex-grow-1" do |f| %>
+      <div class="input-group my-3">
+        <%= f.label t("title"), class: "input-group-text" %>
+        <%= f.search_field :title_cont, class: "form-control" %>
+        <%= f.label t("status"), class: "input-group-text" %>
+        <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
+                                                    [t("enums.status.progress"), "1"],
+                                                    [t("enums.status.done"), "2"]]), 
+                                                    {include_blank: t("status_search")},
+                                                    {class: "select"} %>
+        <%= f.submit class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    
+  </div>
+
+
+  <table class="table table-hover text-center">
+    <thead>
+      <tr>
+        <th><%= t("mission_setter") %></th>
+        <th><%= t("title") %></th>
+        <th><%= t("status") %></th>
+        <th><%= sort_link(@q, :priority, t("priority"), {}, id: "sortPriority") %></th>
+        
+        <th><%= sort_link(@q, :start_at, t("start_time"), {}, id: "sortStartAt") %></th>
+        <th><%= sort_link(@q, :end_at, t("end_time"), {}, id: "sortEndAt") %></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @missions.each do |mission| %>
+        <tr>
+          <td><%= mission.user.email %></td>
+          <td><%= link_to mission.title, mission_path(mission), class: "text-decoration-none text-info fw-bold" %></td>
+          <td><%= t("enums.status.#{mission.status}") %></td>
+          <td><%= t("enums.priority.#{mission.priority}") %></td>
+          
+          <td><%= mission.start_time.strftime("%Y-%m-%d %H:%M") %></td>
+          <td><%= mission.end_time.strftime("%Y-%m-%d %H:%M") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div id="paginate">
+    <%= paginate @missions %>
+  </div>
+</div>
