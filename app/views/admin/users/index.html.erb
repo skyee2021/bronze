@@ -1,0 +1,57 @@
+<div class="container">
+ 
+
+  <h1 class="mb-3 text-center fw-bold"><%= t("user_list") %></h1>
+
+  <div>
+    <%= link_to t("back_to_mission_list"), missions_path, class: "btn btn-outline-primary" %>
+    <%= link_to t("new_user"),  new_qqaazzxxssww_user_path, class: "btn btn-danger my-3" %>
+  </div>
+
+  <div class="d-flex align-items-center">
+    <%= search_form_for @q, url: qqaazzxxssww_users_path, class: "flex-grow-1" do |f| %>
+      <div class="input-group my-3">
+        <%= f.label t("user_email"), class: "input-group-text" %>
+        <%= f.search_field :email_cont, class: "form-control" %>
+        <%= f.submit class: "btn btn-secondary" %>
+      </div>
+    <% end %>
+    
+  </div>
+
+
+  <table class="table table-hover text-center border">
+    <thead>
+      <tr>
+        <td><%= sort_link(@q, :id, "ID", {}, id: "sort_user_id") %></td>
+        <td><%= sort_link(@q, :email, t("email"), {}, id: "sort_user_mail") %></td>
+        <td><%= t("missions_amount") %></td>
+        <td><%= sort_link(@q, :role, t("role"), {}, id: "sort_user_role") %></td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @all_users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-info fw-bold" %></td>
+          <td><%= user.missions.size %></td>
+          <td><%= user.role %></td>
+          <td class="d-flex justify-content-between">
+            <%= link_to t("edit"), edit_qqaazzxxssww_user_path(user), class: "btn btn-outline-success" %>
+            <% if user.role == "locked" %>
+              <%= link_to t("unlock"), unlocked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
+            <% else %>
+              <%= link_to t("lock"), locked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
+            <% end%>
+            <%= link_to t("delete"), qqaazzxxssww_user_path(user), method: "delete", data: {confirm: t("confirm")}, class: "btn btn-outline-light" %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <div id="paginate">
+    <%= paginate @all_users %>
+  </div>
+</div>

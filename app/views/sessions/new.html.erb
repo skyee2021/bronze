@@ -1,15 +1,19 @@
-<h1>登入</h1>
+<h1 class="mb-3 text-center fw-bold"><%= t('log_in')%></h1>
 
-<%= simple_form_for(@user, url: log_in_sessions_path) do |form| %>
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.email_field :email %>
+<div class="d-flex justify-content-center align-items-center">
+    <div class="user-form-container mt-5 border border-dark p-5 w-50">
+      <%= simple_form_for(@user, url: log_in_sessions_path) do |f| %>
+        
+        <div class="field">
+          <%= f.input :email, label: t("email"), input_html: {class: "form-control"} %>
+        </div>
+
+        <div class="field">
+          <%= f.input :password, label: t("password"), input_html: {class: "form-control"} %>
+        </div>
+
+        <%= f.button :submit, t("log_in"), class: "btn btn-danger my-3" %>
+      <% end %>
+      <%= link_to t('sign_in'), sign_up_users_path, class: "btn btn-outline-primary" %>
   </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password %>
-  </div>
-
-  <%= form.submit '登入' %>
-<% end %>
+</div>

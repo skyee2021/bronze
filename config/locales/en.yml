@@ -75,3 +75,16 @@ en:
   log_in: Log in
   log_out: Log out
   sign_in: Sign in
+  log_before_start: Please Log in first
+  login_error: Email or Password is wrong
+  user_list: User List
+  back_to_mission_list: Back Mission List
+  missions_amount: Missions Amount
+  user_email: Search User's mail
+  role: User role
+  lock: Lock
+  locked: Locked
+  unlock: Unlocked
+  back_userlist: Back User List
+  new_user: New User
+  edit_user: Edit User
