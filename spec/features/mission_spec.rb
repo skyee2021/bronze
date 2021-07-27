@@ -9,8 +9,8 @@ feature "mission", :type => :feature do
     # session[ENV['session_name']] = user.id
     # session[ENV["user_role"]] = user.role
     # session[ENV["user_email"]] = user.email
-    # user
-    # login
+    user
+    login
     # byebug
   
     @m1 = user.missions.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
@@ -25,12 +25,12 @@ feature "mission", :type => :feature do
     visit log_in_sessions_path
     
     # within('#user_email') do
-      fill_in '#user_email', with: 'aaa@aa.aa'
+      fill_in 'user_email', with: 'aaa@aa.aa'
     # end
     # within('#user_password') do
-      fill_in '#user_password', with: '123456'
+      fill_in 'user_password', with: '123456'
     # end
-    click_on I18n.t('submit')
+    click_button I18n.t("log_in")
   end
 
 
@@ -40,7 +40,7 @@ feature "mission", :type => :feature do
     visit "/" #首頁
     expect(page).to have_content("新增任務")
     mission_order = page.all('.mission_title').map(&:text)
-    byebug
+    # byebug
     expect(mission_order).to eq(["m1", "m2", "m3"])
     
 

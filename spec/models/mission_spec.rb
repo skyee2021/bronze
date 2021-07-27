@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Mission, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
   before do
-    # user = User.create(id: 3, email: "aaa@aa.aa", password: "123123")
+    user = User.create(id: 3, email: "aaa@aa.aa", password: "123123")
   end
 
   context "任務" do

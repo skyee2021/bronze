@@ -4,6 +4,7 @@ class SessionsController < ApplicationController
   end
 
   def create
+    # byebug
     user = User.login(user_params)
     if user
       # session[:bronze]] = user.id

@@ -1,16 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe MissionsController, type: :controller do
-  # let(:user) { User.create(email: 'aaa@aa.aa', password: '123456') }
-  # let(:mission) {user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)}
+  let(:user) { User.create(email: 'aaa@aa.aa', password: '123456') }
+  let(:mission) {user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)}
 
   before do
-    # session[ENV['session_name']] = user.id
-    # session[ENV["user_role"]] = user.role
-    # session[ENV["user_email"]] = user.email    
+    session[ENV['session_name']] = user.id
+    session[ENV["user_role"]] = user.role
+    session[ENV["user_email"]] = user.email    
     
     # u1 = User.create(email: "aaaa@aa.aa", password: "123456")
-    # @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
+    @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
    
   end
   it "#index" do
