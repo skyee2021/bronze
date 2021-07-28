@@ -49,7 +49,8 @@ class MissionsController < ApplicationController
 
   private
   def find_mission
-    @mission = current_user.missions.find(params[:id])
+    user = Mission.find(params[:id]).user_id
+    @mission = User.find(user).missions.find(params[:id])
   end
   
   def mission_params
