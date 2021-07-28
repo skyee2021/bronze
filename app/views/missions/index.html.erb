@@ -17,9 +17,9 @@
   <%= f.search_field :tags_category_cont, class: "form-control" %>
 
   <%= f.label t("status"), class: "input-group-text" %>
-  <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
-                                               [t("enums.status.progress"), "1"],
-                                               [t("enums.status.done"), "2"]]), 
+  <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "pending"],
+                                               [t("enums.status.progress"), "progress"],
+                                               [t("enums.status.done"), "done"]]), 
                                                {include_blank: t("status_search")},
                                                {class: "select"} %>
 
