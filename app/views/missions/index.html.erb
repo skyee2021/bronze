@@ -13,6 +13,9 @@
   <%= f.label t("description"), class: "input-group-text" %>
   <%= f.search_field :description_cont, class: "form-control" %>
 
+  <%= f.label t("tag"), class: "input-group-text" %>
+  <%= f.search_field :tags_category_cont, class: "form-control" %>
+
   <%= f.label t("status"), class: "input-group-text" %>
   <%= f.select :status_eq, options_for_select([[t("enums.status.pending"), "0"],
                                                [t("enums.status.progress"), "1"],
