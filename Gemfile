@@ -65,3 +65,4 @@ gem 'simple_form', '~> 5.1'
 gem 'ransack'
 gem 'kaminari'
 gem "figaro"
+

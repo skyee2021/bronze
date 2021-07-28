@@ -8,6 +8,41 @@ class Mission < ApplicationRecord
   validate :check_end
   belongs_to :user
 
+  has_many :tag_lists, dependent: :destroy
+  has_many :tags, through: :tag_lists
+
+   
+  def self.tagged_with(category)
+    Tag.find_by!(category: category).missions
+  end
+
+  def tag_items
+    tags.map(&:category).join(', ')
+  end
+
+  def tag_items=(categorys)
+    self.tags = categorys.split(',').map do |item|
+      Tag.where(category: item.strip).first_or_create!
+    end
+  end
+
+
+  def tag_items
+    tags.map(&:category)
+  end
+
+  def tag_items=(categorys)
+    self.tags = categorys.map do |item|
+      Tag.where(category: item.strip).first_or_create! unless item.blank?
+    end.compact!
+  end
+
+  def tag_items_view
+    tags.map do |tag|
+      %Q(<span class="tag">#{tag.category}</span>)
+    end.join(' ')
+  end
+
 
 
   private

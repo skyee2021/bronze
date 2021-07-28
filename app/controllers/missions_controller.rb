@@ -7,7 +7,9 @@ class MissionsController < ApplicationController
       redirect_to log_in_sessions_path, notice: t("your account is locked")
     else
       @q = current_user.missions.order('created_at').ransack(params[:q])
-      @missions = @q.result.includes(:user).page(params[:page]).per(10)
+      # @missions = @q.result.includes(:user).page(params[:page]).per(10)
+      # @tags = Tag.joins(:missions).where(missions: {user_id: current_user }).distinct()
+      @missions = @q.result.includes(:user).includes(:tags).page(params[:page]).per(25)
     end
     end
 
@@ -51,7 +53,7 @@ class MissionsController < ApplicationController
   end
   
   def mission_params
-    params.require(:mission).permit(:title, :description, :status, :start_time, :end_time, :priority)
+    params.require(:mission).permit(:title, :description, :status, :start_time, :end_time, :priority, {tag_items: []})
   end
 
   def no_user_loged

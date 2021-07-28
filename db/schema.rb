@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_27_072149) do
+ActiveRecord::Schema.define(version: 2021_07_28_072234) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,21 @@ ActiveRecord::Schema.define(version: 2021_07_27_072149) do
     t.index ["user_id"], name: "index_missions_on_user_id"
   end
 
+  create_table "tag_lists", force: :cascade do |t|
+    t.bigint "tag_id", null: false
+    t.bigint "mission_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["mission_id"], name: "index_tag_lists_on_mission_id"
+    t.index ["tag_id"], name: "index_tag_lists_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "category"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "password"
@@ -40,4 +55,6 @@ ActiveRecord::Schema.define(version: 2021_07_27_072149) do
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 
+  add_foreign_key "tag_lists", "missions"
+  add_foreign_key "tag_lists", "tags"
 end

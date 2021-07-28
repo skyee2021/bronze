@@ -10,13 +10,16 @@ import "channels"
 
 
 Rails.start()
-// Turbolinks.start()
+Turbolinks.start()
 ActiveStorage.start()
 
 
 // require ('../styles')
 // require ('../styles/common.scss')
 import "styles"
+
+import "select2"
+import "select2/dist/css/select2.css"
 
 import "bootstrap"
 const bootstrap = require('bootstrap')
@@ -30,4 +33,10 @@ document.addEventListener("turbolinks:load", () => {
   var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
     return new bootstrap.Popover(popoverTriggerEl)
   })
+
+  $(".js-tag-select").select2({
+    tags: true,
+    tokenSeparators: [',', ' ']
+  })
 })
+
