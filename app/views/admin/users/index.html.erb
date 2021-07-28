@@ -20,7 +20,7 @@
   </div>
 
 
-  <table class="table table-hover text-center border">
+  <table class="table table-hover text-center table-light table-striped">
     <thead>
       <tr>
         <td><%= sort_link(@q, :id, "ID", {}, id: "sort_user_id") %></td>
@@ -34,7 +34,7 @@
       <% @all_users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-info fw-bold" %></td>
+          <td><%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-success fw-bold" %></td>
           <td><%= user.missions.size %></td>
           <td><%= t("enums.role.#{user.role}") %></td>
           <td class="d-flex justify-content-between">
