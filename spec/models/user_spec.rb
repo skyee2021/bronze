@@ -21,5 +21,14 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context "管理員" do
+    it "管理員不能少於一位" do
+      admin = User.create(email: "user@mail.com", password: "123123", role: "admin")
+      user = User.create(email: "user@mail.com", password: "123123", role: "member")
+      admin.destroy
+      expect(admin.errors[:role]).to include I18n.t("not_less_one")
+    end
+  end
+
 
 end
