@@ -52,6 +52,7 @@ class Admin::UsersController < ApplicationController
     #     render :edit, notice: t("fail_update")
     #   end
     # else
+
       if @user.update(user_params)
         if User.where(role: "admin").count < 1
           @user.update(role: "admin")
@@ -62,7 +63,7 @@ class Admin::UsersController < ApplicationController
       else
         render :edit, notice: t("fail_update")
       end
-    # end
+    
   end
 
   def destroy

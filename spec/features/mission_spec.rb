@@ -13,9 +13,9 @@ feature "mission", :type => :feature do
     login
     # byebug
   
-    @m1 = user.missions.create(title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
-    @m2 = user.missions.create(title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
-    @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
+    @m1 = user.missions.create(id: 10, title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
+    @m2 = user.missions.create(id: 15, title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
+    @m3 = user.missions.create(id: 20, title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
 
     
   end
@@ -83,14 +83,39 @@ feature "mission", :type => :feature do
     visit "/" #首頁
     #status search
     within("#mission_search") do
-      select I18n.t("enums.status.done"), from: 'q_status_eq'
+      select I18n.t("enums.status.pending"), from: 'q_status_eq'
+    end
+    click_button I18n.t("submit")
+    # byebug
+    expect(page.body).to have_content("m1")
+    expect(page.body).not_to have_content("m2")
+
+    fill_in 'q_title_cont', with: "m2"
+    click_button I18n.t("submit")
+    expect(page.body).to have_content("m2")
+  end
+
+  scenario "tags" do
+  #任務上有標籤
+    t1 = Tag.create(id: 1, category: "ttt")
+    t2 = Tag.create(id: 2, category: "ooo")
+    TagList.create(tag_id: 1, mission_id: 10)
+    TagList.create(tag_id: 2, mission_id: 15)
+
+    visit "/" #首頁
+    expect(page.body).to have_content("ttt")
+    expect(page.body).to have_content("ooo")
+    expect(first('.tag')).to have_content('ttt')
+
+    #tag搜尋
+    within(".mission_search") do 
+      fill_in "q_tags_category_cont", with: "ooo"
     end
     click_button I18n.t("submit")
     expect(page.body).to have_content("m2")
     expect(page.body).not_to have_content("m1")
-  end
 
-    
+  end
  
   
 end

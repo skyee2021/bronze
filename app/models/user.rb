@@ -14,6 +14,7 @@ class User < ApplicationRecord
   enum role: { member: 0, admin: 1, locked: 2 }
 
   before_destroy :check_admin_numbers, prepend: true
+  # before_update :check_admin_numbers
   
 
   def self.login(params)
@@ -47,7 +48,10 @@ class User < ApplicationRecord
 
   def check_admin_numbers
     if self.role == "admin"
-      throw :abort if User.where(role: "admin").count <= 1
+      if User.where(role: "admin").count <= 1
+        errors[:role] << I18n.t('not_less_one')
+        throw :abort
+      end
     end
   end
 
