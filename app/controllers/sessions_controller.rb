@@ -8,6 +8,8 @@ class SessionsController < ApplicationController
     user = User.login(user_params)
     if user
       # session[:bronze]] = user.id
+
+      #而外設定 ENV["session_name"] 有什麼特別原因嗎XD
       session[ENV["session_name"]] = user.id
       redirect_to root_path
     else
@@ -21,7 +23,7 @@ class SessionsController < ApplicationController
   end
 
 
-  private 
+  private
   def user_params
     params.require(:user).permit(:email, :password)
   end

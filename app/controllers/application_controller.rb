@@ -19,7 +19,8 @@ class ApplicationController < ActionController::Base
     # session[ENV["session_name"]]
     current_user.present?
   end
-  
+
+  #這名字為什麼還有 _org
   def authenticate_admin_or_org
     unless current_user.admin?
       # flash[:alert] = '你沒有權限進入！'

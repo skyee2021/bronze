@@ -17,10 +17,11 @@ class UsersController < ApplicationController
   end
 
   def edit
+    # 需要做一個 @user 嗎？
   end
 
   def update
-    if current_user.update(user_params_edit)
+    if current_user.update(user_params_update)
       redirect_to root_path, notice: t("successfully_update")
     else
       render :edit
@@ -39,7 +40,8 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def user_params_edit
+  def user_params_update
+    # 不能改帳號密碼嗎？
     params.require(:user).permit(:password, :password_confirmation)
   end
 
