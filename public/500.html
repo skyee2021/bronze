@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>We're sorry, but something went wrong (500)</title>
+  <title>500</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <style>
   .rails-default-error-page {
@@ -51,16 +51,30 @@
     color: #666;
     box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
   }
+
+  body {
+      height: calc(100vh - 1rem);
+      background: url(https://freefrontend.com/assets/img/500-error-page-html-templates/500-HTTP-Error.gif) no-repeat top / cover
+    }
+    .big505{
+      font-size: 9rem;
+      text-align: center;
+    }
+    .tryback a{
+    color: whitesmoke;
+    font-weight: 800;
+    text-decoration: none;
+    display: block;
+    /* background-color: turquoise; */
+    font-size: 1rem;
+    text-align: center;
+    }
   </style>
 </head>
 
-<body class="rails-default-error-page">
+<body class="">
   <!-- This file lives in public/500.html -->
-  <div class="dialog">
-    <div>
-      <h1>We're sorry, but something went wrong.</h1>
-    </div>
-    <p>If you are the application owner check the logs for more information.</p>
-  </div>
+  <div class="big505">500</div>
+  <div class="tryback"><a href="/">嘗試回首頁</a></div>
 </body>
 </html>

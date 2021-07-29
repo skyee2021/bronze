@@ -4,24 +4,34 @@
   
 }
 
+#sort_by_title {
+  text-decoration: none;
+  color: black;
+  font-weight: 600;
+ }
+
 #sort_by_status {
  text-decoration: none;
  color: black;
+//  font-weight: 600;
 }
 
 #sort_by_priority {
   text-decoration: none;
   color: black;
+  // font-weight: 600;
  }
 
  #sort_by_start {
   text-decoration: none;
   color: black;
+  // font-weight: 600;
  }
 
  #sort_by_end {
   text-decoration: none;
   color: black;
+  // font-weight: 600;
  }
 
 .search_field {
@@ -38,4 +48,34 @@
   width: 200px;
   color: rgb(180, 174, 174);
   color: aqua;
+}
+
+.tag {
+  display: inline-block;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #0058cc;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  background-color: transparent;
+  border: 1px solid #0583eb;
+  padding: 0 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
+#sort_user_id{
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#sort_user_mail{
+  text-decoration: none;
+  font-weight: 600;
+}
+
+#sort_user_role{
+  text-decoration: none;
+  font-weight: 600;
 }

@@ -41,7 +41,7 @@
       <% @missions.each do |mission| %>
         <tr>
           <td><%= mission.user.email %></td>
-          <td><%= link_to mission.title, mission_path(mission), class: "text-decoration-none text-info fw-bold" %></td>
+          <td><%= link_to mission.title, mission_path(mission.user_id, mission.id), class: "text-decoration-none text-info fw-bold" %></td>
           <td><%= t("enums.status.#{mission.status}") %></td>
           <td><%= t("enums.priority.#{mission.priority}") %></td>
           
