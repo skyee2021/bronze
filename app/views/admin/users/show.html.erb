@@ -1,5 +1,4 @@
 <div class="container">
-  
 
   <h1 class="mb-3 text-center fw-bold"><%= "#{@user.email[/^\w+/]} #{t("mission_list")}" %></h1>
 
@@ -32,7 +31,6 @@
         <th><%= t("title") %></th>
         <th><%= t("status") %></th>
         <th><%= sort_link(@q, :priority, t("priority"), {}, id: "sortPriority") %></th>
-        
         <th><%= sort_link(@q, :start_at, t("start_time"), {}, id: "sortStartAt") %></th>
         <th><%= sort_link(@q, :end_at, t("end_time"), {}, id: "sortEndAt") %></th>
         <th></th>

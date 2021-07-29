@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Mission, type: :model do
- 
+
   let(:user){ User.create(id: 3, email: "aaa@aa.aa", password: "123123")}
   
 
@@ -10,6 +10,7 @@ RSpec.describe Mission, type: :model do
       mission = user.missions.new(title: "m1", start_time: Time.now, end_time: Time.now, status:"pending")
       expect(mission.status).to eq "pending"
     end
+    
     it "mission_create_sort_by_creat_time" do
       mission2 = user.missions.create(title: "m2", start_time: Time.now, end_time: Time.now, status:"pending")
       expect(mission2).to eq(Mission.last)

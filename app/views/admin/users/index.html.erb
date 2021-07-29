@@ -1,5 +1,4 @@
 <div class="container">
- 
 
   <h1 class="mb-3 text-center fw-bold"><%= t("user_list") %></h1>
 
@@ -16,7 +15,6 @@
         <%= f.submit class: "btn btn-secondary" %>
       </div>
     <% end %>
-    
   </div>
 
 
@@ -34,7 +32,9 @@
       <% @all_users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-success fw-bold" %></td>
+          <td>
+            <%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-success fw-bold" %>
+          </td>
           <td><%= user.missions.size %></td>
           <td><%= t("enums.role.#{user.role}") %></td>
           <td class="d-flex justify-content-between">

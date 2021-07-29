@@ -19,13 +19,11 @@ feature "mission", :type => :feature do
     # @m1 = user.missions.create(id: 10, title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
     # @m2 = user.missions.create(id: 15, title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
     # @m3 = user.missions.create(id: 20, title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
-
   end
 
   def login
     # byebug
     visit log_in_sessions_path
-    
     # within('#user_email') do
       fill_in 'user_email', with: 'aaa@aa.aa'
     # end

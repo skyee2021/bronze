@@ -53,17 +53,17 @@ class Admin::UsersController < ApplicationController
     #   end
     # else
 
-      if @user.update(user_params)
-        # if User.where(role: "admin").count < 1
-        #   @user.update(role: "admin")
-        #   redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
-        # else
-          redirect_to qqaazzxxssww_users_path, notice: t("successfully_update")
-        # end
-      else
-        msg = @user.errors[:role].present? ? t("not_less_one") : t("fail_update")
-        redirect_to qqaazzxxssww_users_path, notice: msg
-      end
+    if @user.update(user_params)
+      # if User.where(role: "admin").count < 1
+      #   @user.update(role: "admin")
+      #   redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
+      # else
+        redirect_to qqaazzxxssww_users_path, notice: t("successfully_update")
+      # end
+    else
+      msg = @user.errors[:role].present? ? t("not_less_one") : t("fail_update")
+      redirect_to qqaazzxxssww_users_path, notice: msg
+    end
     
   end
 
@@ -84,7 +84,6 @@ class Admin::UsersController < ApplicationController
     def find_user
       @user = User.find(params[:id])
     end
-
 
 end
 
