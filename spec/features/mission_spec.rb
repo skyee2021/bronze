@@ -3,21 +3,23 @@ require 'rails_helper'
 
 
 feature "mission", :type => :feature do
-  let(:user) { User.create(email: 'aaa@aa.aa', password: '123456', role: 'member') }
-  
+  let!(:user) { User.create(email: 'aaa@aa.aa', password: '123456', role: 'member') }
+  let!(:m1){user.missions.create(id: 10, title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")}
+  let!(:m2){user.missions.create(id: 15, title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")}
+  let!(:m3){user.missions.create(id: 20, title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")}
+
   before do
-    # session[ENV['session_name']] = user.id
-    # session[ENV["user_role"]] = user.role
-    # session[ENV["user_email"]] = user.email
     user
     login
     # byebug
+    m1
+    m2
+    m3
   
-    @m1 = user.missions.create(id: 10, title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
-    @m2 = user.missions.create(id: 15, title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
-    @m3 = user.missions.create(id: 20, title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
+    # @m1 = user.missions.create(id: 10, title: "m1", start_time: Time.now, end_time: Time.now + 10.minutes, status: "pending", priority: "high")
+    # @m2 = user.missions.create(id: 15, title: "m2", start_time: Time.now, end_time: Time.now + 2.minutes, status: "done", priority: "low")
+    # @m3 = user.missions.create(id: 20, title: "m3", start_time: Time.now, end_time: Time.now + 5.minutes, status: "done", priority: "middle")
 
-    
   end
 
   def login
@@ -35,24 +37,18 @@ feature "mission", :type => :feature do
 
 
   scenario "ordered by created_at" do
-    
 
     visit "/" #首頁
     expect(page).to have_content("新增任務")
     mission_order = page.all('.mission_title').map(&:text)
     # byebug
     expect(mission_order).to eq(["m1", "m2", "m3"])
-    
 
-    # expect(all).to match(/m3/m)
-    # missions = Mission.ransack({s: "created_at"}).result
-    # expect(missions).to eq([@m1, @m2, @m3])
     
     click_link "sort_by_end"
     mission_order = page.all('.mission_title').map(&:text)
     expect(page.body).to match(/m2.*m3.*m1/m)
     expect(mission_order).to eq(["m2", "m3", "m1"])
-    # expect(body.index(@m2.title)).to be < body.index(@m3.title)
     
     click_link "sort_by_priority"
     mission_order = page.all('.mission_title').map(&:text)
@@ -67,14 +63,10 @@ feature "mission", :type => :feature do
     click_button I18n.t("submit")
     expect(page.body).to have_content("m1")
     expect(page.body).not_to have_content("m2")
-
-       
     
     visit "/missions/new"
     expect(page).to have_content("任務名稱")
     expect(page).to have_content("返回任務列表")
-    
-
     
   end
   
@@ -116,7 +108,6 @@ feature "mission", :type => :feature do
     expect(page.body).not_to have_content("m1")
 
   end
- 
   
 end
 

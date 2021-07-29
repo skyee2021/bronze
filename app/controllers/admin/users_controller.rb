@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
-  before_action :current_user
+  # before_action :current_user
+  before_action :no_user_loged
   before_action :authenticate_admin_or_org
-  before_action :user_loged_in?
   before_action :find_user, only: [:show, :edit, :update, :destroy, :locked, :unlocked]
 
   def index
@@ -32,13 +32,13 @@ class Admin::UsersController < ApplicationController
   def locked
     @user.update(role: 'locked')
     # @user.update(role: 'locked')
-    redirect_to qqaazzxxssww_user_path, notice: '帳號已鎖！'
+    redirect_to qqaazzxxssww_users_path, notice: '帳號已鎖！'
   end
 
   def unlocked
     @user.update(role: 'member')
     # @user.update(role: 'locked')
-    redirect_to qqaazzxxssww_user_path, notice: '帳號解鎖！'
+    redirect_to qqaazzxxssww_users_path, notice: '帳號解鎖！'
   end
 
   def edit
@@ -54,14 +54,15 @@ class Admin::UsersController < ApplicationController
     # else
 
       if @user.update(user_params)
-        if User.where(role: "admin").count < 1
-          @user.update(role: "admin")
-          redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
-        else
+        # if User.where(role: "admin").count < 1
+        #   @user.update(role: "admin")
+        #   redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
+        # else
           redirect_to qqaazzxxssww_users_path, notice: t("successfully_update")
-        end
+        # end
       else
-        render :edit, notice: t("fail_update")
+        msg = @user.errors[:role].present? ? t("not_less_one") : t("fail_update")
+        redirect_to qqaazzxxssww_users_path, notice: msg
       end
     
   end

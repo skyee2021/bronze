@@ -35,6 +35,7 @@
         
         <th><%= sort_link(@q, :start_at, t("start_time"), {}, id: "sortStartAt") %></th>
         <th><%= sort_link(@q, :end_at, t("end_time"), {}, id: "sortEndAt") %></th>
+        <th></th>
       </tr>
     </thead>
     <tbody>
@@ -47,6 +48,10 @@
           
           <td><%= mission.start_time.strftime("%Y-%m-%d %H:%M") %></td>
           <td><%= mission.end_time.strftime("%Y-%m-%d %H:%M") %></td>
+          <td>
+            <%= link_to t('edit'), edit_mission_path(mission), class: "btn btn-outline-info", data: {turbolinks: false}  %>
+            <%= link_to t('delete'), mission_path(mission), method: 'delete', data: { confirm: t('confirm') }, class: "btn btn-outline-light" %>
+          </td>
         </tr>
       <% end %>
     </tbody>

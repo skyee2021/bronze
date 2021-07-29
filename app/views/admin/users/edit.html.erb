@@ -15,8 +15,8 @@
           <%= f.label t('role'), class: "" %>
           <div>
           <%= f.select :role, options_for_select([[t("enums.role.member"), "member"],
-                                                 [t("enums.role.admin"), "admin"]]),
-                                                 {class: "role_select"} %>
+                                                 [t("enums.role.admin"), "admin"]], f.object.role ),
+                                                 {class: "role_select"}%>
 
           </div>
         </div>

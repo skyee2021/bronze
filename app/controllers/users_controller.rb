@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-  before_action :find_user, only: [:edit, :update, :locked]
+  before_action :check_user_locked, only: [:locked]
+  before_action :no_user_loged
 
   def new
     @user = User.new
@@ -19,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if @user.update(user_params_edit)
+    if current_user.update(user_params_edit)
       redirect_to root_path, notice: t("successfully_update")
     else
       render :edit
@@ -42,12 +43,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:password, :password_confirmation)
   end
 
-  def find_user
-    @user = User.find_by!(id: session[ENV['session_name']])
+  # def check_user_locked
+  #   # @user = User.find_by!(id: session[ENV['session_name']])
+  #   @user = current_user
 
-    redirect_to locked_users_path if @user.role == "locked"
+  #   redirect_to locked_users_path if @user.locked?
 
-  # rescue ActiveRecord::RecordNotFound
-  #   redirect_to root_path, notice: t("user_not_found")
-  end
+  # # rescue ActiveRecord::RecordNotFound
+  # #   redirect_to root_path, notice: t("user_not_found")
+  # end
 end

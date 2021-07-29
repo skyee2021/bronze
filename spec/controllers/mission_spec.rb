@@ -5,12 +5,10 @@ RSpec.describe MissionsController, type: :controller do
   let(:mission) {user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)}
 
   before do
-    session[ENV['session_name']] = user.id
-    session[ENV["user_role"]] = user.role
-    session[ENV["user_email"]] = user.email    
+    session[ENV['session_name']] = user.id   
     
     # u1 = User.create(email: "aaaa@aa.aa", password: "123456")
-    @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
+    # @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
    
   end
   it "#index" do
@@ -34,7 +32,12 @@ RSpec.describe MissionsController, type: :controller do
   it "#destroy" do
     m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
     # byebug
-    expect{delete :destroy, params: {id: user.missions.find(mission.id)}}.to change{Mission.where(user_id: user.id).count}.by(0)
+    mission
+    expect{delete :destroy, params: {id: user.missions.find(mission.id)}}.to change{Mission.where(user_id: user.id).count}.by(-1)
+    # 1(執行前Mission.where)->2(執行中expect，呼叫mission)->1(expec執行中刪除掉missions)-1（執行後Mission.where) without 35沒呼叫mission
+    # byebug
+    expect{delete :destroy, params: {id: user.missions.find(m3.id)}}.to change{Mission.where(user_id: user.id).count}.by(-1)
+    # expect{delete :destroy, params: {id: m3.id}}.to change{Mission.where(user_id: user.id).count}.by(-1)
     # post :destroy, params: {id: user.missions.find(mission.id)}
     # expect(Mission.where(user_id: user.id).count).to change(-1)
     expect(response).to redirect_to(missions_path)
@@ -43,6 +46,7 @@ RSpec.describe MissionsController, type: :controller do
 
 
   describe "validations" do
+    # let(:user) { User.create(email: 'aaa@aa.aa', password: '123456')}
     it "presence" do
       mission = Mission.new(title: "11", description: "111", start_time: "", end_time: "")
       mission.save
