@@ -3,11 +3,11 @@
   <head>
     <title>Bronze</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+      <%= csrf_meta_tags %>
+      <%= csp_meta_tag %>
+      <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%#= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+      <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
@@ -16,7 +16,7 @@
     <div class="d-flex justify-content-between my-4">
       <div>
         <% if user_loged_in? %>
-          <%= link_to current_user.email, edit_user_path(current_user), class: "btn btn-light" %>
+          <%= link_to current_user.email, edit_users_path, class: "btn btn-light" %>
           <%= link_to t('log_out'), log_out_sessions_path, method: 'delete', class: "btn btn-outline-light" %>
           <% if current_user.role == 'admin'%>
             <%= link_to t('admin_platform'), qqaazzxxssww_users_path, class: "btn btn-light" %>

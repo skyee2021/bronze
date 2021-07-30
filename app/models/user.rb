@@ -1,9 +1,10 @@
+require 'digest'
+
 class User < ApplicationRecord
   has_many :missions, dependent: :destroy
-  require 'digest'
 
   validates :email, presence: true,
-                    uniqueness: true, 
+                    uniqueness: true,
                     format: { with: /.+\@.+\..+/ }
   validates :password, presence: true,
                        confirmation: true
@@ -15,7 +16,8 @@ class User < ApplicationRecord
 
   before_destroy :check_admin_numbers, prepend: true
   # before_update :check_admin_numbers
-  
+  validate :update_admin_to_member, on: :update
+  validate :update_admin_to_locked, on: :update
 
   def self.login(params)
     email = params[:email]
@@ -25,33 +27,43 @@ class User < ApplicationRecord
     find_by(email: email, password: encrypted_password)
   end
 
-  private 
+  private
   def encrypt_password #加密
     self.password = Digest::SHA256.hexdigest("123#{password}321")
   end
 
-  def admin?
-    session[ENV["user_role"]] == "admin"
-  end
+  # def admin?
+  #   session[ENV["user_role"]] == "admin"
+  # end
 
-  def user_locked?
-    session[ENV["user_role"]] == "locked"
-  end
+  # def user_locked?
+  #   session[ENV["user_role"]] == "locked"
+  # end
 
-  def locked
-    self.role = "locked"
-  end
+  # def locked
+  #   self.role = "locked"
+  # end
 
-  def unlocked
-    self.role = "member"
-  end
+  # def unlocked
+  #   self.role = "member"
+  # end
 
   def check_admin_numbers
-    if self.role == "admin"
-      if User.where(role: "admin").count <= 1
-        errors[:role] << I18n.t('not_less_one')
-        throw :abort
-      end
+    if admin? && User.admin.count <= 1
+      errors[:role] << I18n.t('not_less_one')
+      throw :abort
+    end
+  end
+
+  def update_admin_to_member
+    if role_changed?(from: 'admin', to: 'member') && User.admin.count <= 1
+      errors.add(:role, I18n.t('not_less_one'))
+    end
+  end
+
+  def update_admin_to_locked
+    if role_changed?(from: 'admin', to: 'locked') && User.admin.count <= 1
+      errors.add(:role, I18n.t('not_less_one'))
     end
   end
 

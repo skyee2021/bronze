@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root 'missions#index'
   resources :missions
 
-  resources :users, only: [:create, :update, :edit] do
+  resource :users, only: [:create, :update, :edit] do
     collection do
       get :sign_up, action: 'new'
       

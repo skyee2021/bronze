@@ -69,3 +69,5 @@ zh-TW:
   not_less_one: 管理者不能少於一名
   fail_update: 更新失敗
   tag: 標籤
+  your account is locked: 你的帳號已被鎖住
+  admin_not_lock: 管理者不能被封鎖

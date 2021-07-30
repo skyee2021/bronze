@@ -1,17 +1,12 @@
 class MissionsController < ApplicationController
   before_action :find_mission, only: [:show, :edit, :update, :destroy]
   before_action :no_user_loged
+  before_action :check_user_locked
 
   def index
-    if current_user.role == "locked"
-      redirect_to log_in_sessions_path, notice: t("your account is locked")
-    else
-      @q = current_user.missions.order('created_at').ransack(params[:q])
-      # @missions = @q.result.includes(:user).page(params[:page]).per(10)
-      # @tags = Tag.joins(:missions).where(missions: {user_id: current_user }).distinct()
-      @missions = @q.result.includes(:user).includes(:tags).page(params[:page]).per(25)
-    end
-    end
+    @q = current_user.missions.order('created_at').ransack(params[:q])
+    @missions = @q.result.includes(:user, :tags).page(params[:page]).per(25)
+  end
 
   def new
     @mission = Mission.new
@@ -45,21 +40,25 @@ class MissionsController < ApplicationController
     redirect_to missions_path, notice: t('delete')
   end
 
-
-
   private
+
   def find_mission
-    user = Mission.find(params[:id]).user_id
-    @mission = User.find(user).missions.find(params[:id])
+    if current_user.admin?
+      @mission = Mission.find(params[:id])
+    else
+      # user = Mission.find(params[:id]).user_id
+      @mission = current_user.missions.find(params[:id])
+    end
   end
   
   def mission_params
     params.require(:mission).permit(:title, :description, :status, :start_time, :end_time, :priority, {tag_items: []})
   end
 
-  def no_user_loged
-    if session[ENV['session_name']] == nil
-      redirect_to log_in_sessions_path, notice: t("log_before_start")
-    end
-  end
+  # def no_user_loged
+  #   if current_user.nil?
+  #     # session[ENV['session_name']] == nil
+  #     redirect_to log_in_sessions_path, notice: t("log_before_start")
+  #   end
+  # end
 end
