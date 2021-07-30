@@ -41,6 +41,8 @@
             <%= link_to t("edit"), edit_qqaazzxxssww_user_path(user), class: "btn btn-outline-success" %>
             <% if user.locked? %>
               <%= link_to t("unlock"), unlocked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
+            <% elsif user.admin? %>
+              <div class=""><%= t('admin_not_lock') %></div>
             <% else %>
               <%= link_to t("lock"), locked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
             <% end%>

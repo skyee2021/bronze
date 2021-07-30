@@ -99,3 +99,4 @@ en:
   fail_update: update fail
   tag: Tag
   your account is locked: your account is locked
+  admin_not_lock: Admin not allowed to lock

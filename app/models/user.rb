@@ -17,6 +17,7 @@ class User < ApplicationRecord
   before_destroy :check_admin_numbers, prepend: true
   # before_update :check_admin_numbers
   validate :update_admin_to_member, on: :update
+  validate :update_admin_to_locked, on: :update
 
   def self.login(params)
     email = params[:email]
@@ -56,6 +57,12 @@ class User < ApplicationRecord
 
   def update_admin_to_member
     if role_changed?(from: 'admin', to: 'member') && User.admin.count <= 1
+      errors.add(:role, I18n.t('not_less_one'))
+    end
+  end
+
+  def update_admin_to_locked
+    if role_changed?(from: 'admin', to: 'locked') && User.admin.count <= 1
       errors.add(:role, I18n.t('not_less_one'))
     end
   end
