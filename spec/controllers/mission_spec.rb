@@ -5,11 +5,11 @@ RSpec.describe MissionsController, type: :controller do
   let(:mission) {user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)}
 
   before do
-    session[ENV['session_name']] = user.id   
+    session[:user] = user.id   
     # u1 = User.create(email: "aaaa@aa.aa", password: "123456")
     # @m3 = user.missions.create(title: "m3", start_time: Time.now, end_time: Time.now)
   end
-  
+
   it "#index" do
     get :index
     expect(response).to have_http_status(200)
