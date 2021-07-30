@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :check_user_locked, only: [:locked]
-  before_action :no_user_loged
+  before_action :no_user_loged, except: [:new, :create]
 
   def new
     @user = User.new
@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    if current_user.update(user_params_edit)
+    if current_user.update(user_params_update)
       redirect_to root_path, notice: t("successfully_update")
     else
       render :edit
@@ -39,7 +39,7 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :password, :password_confirmation)
   end
 
-  def user_params_edit
+  def user_params_update
     params.require(:user).permit(:password, :password_confirmation)
   end
 

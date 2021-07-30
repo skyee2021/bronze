@@ -5,7 +5,7 @@ class MissionsController < ApplicationController
 
   def index
     @q = current_user.missions.order('created_at').ransack(params[:q])
-    @missions = @q.result.includes(:user).includes(:tags).page(params[:page]).per(25)
+    @missions = @q.result.includes(:user, :tags).page(params[:page]).per(25)
   end
 
   def new

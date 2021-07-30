@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
     user = User.login(user_params)
     if user
       # session[:bronze]] = user.id
-      session[ENV["session_name"]] = user.id
+      session[:user] = user.id
       redirect_to root_path
     else
       redirect_to log_in_sessions_path, notice: t("login_error")
@@ -16,12 +16,12 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[ENV["session_name"]] = nil
+    session[:user] = nil
     redirect_to log_in_sessions_path, notice: t("log_out")
   end
 
 
-  private 
+  private
   def user_params
     params.require(:user).permit(:email, :password)
   end

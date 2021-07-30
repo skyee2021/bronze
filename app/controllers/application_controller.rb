@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :user_loged_in?
 
   def current_user
-    @current_user ||= User.find_by(id: session[ENV["session_name"]])
+    @current_user ||= User.find_by(id: session[:user])
   end
 
   def user_loged_in?
@@ -20,7 +20,7 @@ class ApplicationController < ActionController::Base
     current_user.present?
   end
   
-  def authenticate_admin_or_org
+  def authenticate_admin
     unless current_user.admin?
       # flash[:alert] = '你沒有權限進入！'
       redirect_to root_path, notice: t('not_admin')

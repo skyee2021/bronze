@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   # before_action :current_user
   before_action :no_user_loged
-  before_action :authenticate_admin_or_org
+  before_action :authenticate_admin
   before_action :find_user, only: [:show, :edit, :update, :destroy, :locked, :unlocked]
 
   def index
