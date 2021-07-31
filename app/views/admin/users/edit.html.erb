@@ -4,7 +4,7 @@
 
   <div class="d-flex justify-content-center align-items-center">
     <div class="user-form-container mt-5 border border-dark p-5 w-50 input-group">
-      <%= simple_form_for @user, url: qqaazzxxssww_user_path do |f| %>
+      <%= simple_form_for @user, url: admin_user_path do |f| %>
         <%#= f.input :email, label: t("email"), input_html: {class: "form-control"} %>
         <%= f.label t("email"), class: "" %>
         <%= f.text_field :email, class: "form-control" %> 
@@ -21,7 +21,7 @@
         </div>
         <%= f.button :submit, class: "btn btn-danger my-3" %>
         <div>
-          <%= link_to t("back_userlist"), qqaazzxxssww_users_path, class: "btn btn-outline-secondary" %>
+          <%= link_to t("back_userlist"), admin_users_path, class: "btn btn-outline-secondary" %>
         </div>
       <% end %>
     </div>

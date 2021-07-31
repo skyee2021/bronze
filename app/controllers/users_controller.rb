@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   # def locked
   #   @user = User.find(params[:id])
   #   @user.locked
-  #   redirect_to qqaazzxxssww_user_path(@user.id)
+  #   redirect_to admin_user_path(@user.id)
   # end
 
   private

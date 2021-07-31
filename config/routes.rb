@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :admin, as: "qqaazzxxssww" do
+  namespace :admin, path: "qqaazzxxssww" do
     resources :users do
       member do
         get :locked
