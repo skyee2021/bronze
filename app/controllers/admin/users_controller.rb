@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      redirect_to qqaazzxxssww_users_path
+      redirect_to admin_users_path
     else
       render :new
     end
@@ -31,47 +31,32 @@ class Admin::UsersController < ApplicationController
 
   def locked
     @user.update(role: 'locked')
-    # @user.update(role: 'locked')
-    redirect_to qqaazzxxssww_users_path, notice: '帳號已鎖！'
+    redirect_to admin_users_path, notice: '帳號已鎖！'
   end
 
   def unlocked
     @user.update(role: 'member')
-    # @user.update(role: 'locked')
-    redirect_to qqaazzxxssww_users_path, notice: '帳號解鎖！'
+    redirect_to admin_users_path, notice: '帳號解鎖！'
   end
 
   def edit
   end
 
   def update
-    # if User.where(role: "admin").count <= 1 
-    #   if @user.update(edit_user_params)
-    #     redirect_to qqaazzxxssww_users_path, notice: t("successfully_update_user")
-    #   else
-    #     render :edit, notice: t("fail_update")
-    #   end
-    # else
-
-    if @user.update(user_params)
-      # if User.where(role: "admin").count < 1
-      #   @user.update(role: "admin")
-      #   redirect_to qqaazzxxssww_users_path, notice: t("not_less_one")
-      # else
-        redirect_to qqaazzxxssww_users_path, notice: t("successfully_update")
-      # end
+    msg = if @user.update(user_params)
+      t("successfully_update")
     else
-      msg = @user.errors[:role].present? ? t("not_less_one") : t("fail_update")
-      redirect_to qqaazzxxssww_users_path, notice: msg
+      @user.errors[:role].present? ? t("not_less_one") : t("fail_update")
     end
+    redirect_to admin_users_path, notice: msg
     
   end
 
   def destroy
     if @user.destroy
-      redirect_to qqaazzxxssww_users_path
+      redirect_to admin_users_path
     else
-      redirect_to qqaazzxxssww_users_path
+      redirect_to admin_users_path
     end
   end
 

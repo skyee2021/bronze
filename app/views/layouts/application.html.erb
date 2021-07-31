@@ -19,7 +19,7 @@
           <%= link_to current_user.email, edit_users_path, class: "btn btn-light" %>
           <%= link_to t('log_out'), log_out_sessions_path, method: 'delete', class: "btn btn-outline-light" %>
           <% if current_user.role == 'admin'%>
-            <%= link_to t('admin_platform'), qqaazzxxssww_users_path, class: "btn btn-light" %>
+            <%= link_to t('admin_platform'), admin_users_path, class: "btn btn-light" %>
           <% end %>
         <% else %>
           <%= link_to t('sign_in'), sign_up_users_path, class: "btn btn-light" %> |

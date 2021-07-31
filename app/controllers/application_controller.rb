@@ -44,7 +44,5 @@ class ApplicationController < ActionController::Base
     if @user.locked?
       redirect_to edit_users_path, notice: t("your account is locked")
     end
-  # rescue ActiveRecord::RecordNotFound
-  #   redirect_to root_path, notice: t("user_not_found")
   end
 end

@@ -4,11 +4,11 @@
 
   <div>
     <%= link_to t("back_to_mission_list"), missions_path, class: "btn btn-outline-primary" %>
-    <%= link_to t("new_user"),  new_qqaazzxxssww_user_path, class: "btn btn-danger my-3" %>
+    <%= link_to t("new_user"),  new_admin_user_path, class: "btn btn-danger my-3" %>
   </div>
 
   <div class="d-flex align-items-center">
-    <%= search_form_for @q, url: qqaazzxxssww_users_path, class: "flex-grow-1" do |f| %>
+    <%= search_form_for @q, url: admin_users_path, class: "flex-grow-1" do |f| %>
       <div class="input-group my-3">
         <%= f.label t("user_email"), class: "input-group-text" %>
         <%= f.search_field :email_cont, class: "form-control" %>
@@ -33,20 +33,20 @@
         <tr>
           <td><%= user.id %></td>
           <td>
-            <%= link_to user.email, qqaazzxxssww_user_path(user), class: "text-decoration-none text-success fw-bold" %>
+            <%= link_to user.email, admin_user_path(user), class: "text-decoration-none text-success fw-bold" %>
           </td>
           <td><%= user.missions.size %></td>
           <td><%= t("enums.role.#{user.role}") %></td>
           <td class="d-flex justify-content-between">
-            <%= link_to t("edit"), edit_qqaazzxxssww_user_path(user), class: "btn btn-outline-success" %>
+            <%= link_to t("edit"), edit_admin_user_path(user), class: "btn btn-outline-success" %>
             <% if user.locked? %>
-              <%= link_to t("unlock"), unlocked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
+              <%= link_to t("unlock"), unlocked_admin_user_path(user.id), class: "btn btn-outline-danger" %>
             <% elsif user.admin? %>
               <div class=""><%= t('admin_not_lock') %></div>
             <% else %>
-              <%= link_to t("lock"), locked_qqaazzxxssww_user_path(user.id), class: "btn btn-outline-danger" %>
+              <%= link_to t("lock"), locked_admin_user_path(user.id), class: "btn btn-outline-danger" %>
             <% end%>
-            <%= link_to t("delete"), qqaazzxxssww_user_path(user), method: "delete", data: {confirm: t("confirm")}, class: "btn btn-outline-light" %>
+            <%= link_to t("delete"), admin_user_path(user), method: "delete", data: {confirm: t("confirm")}, class: "btn btn-outline-light" %>
           </td>
         </tr>
       <% end %>
